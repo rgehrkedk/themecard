@@ -1,4 +1,3 @@
-// components/text-size-slider.tsx
 import { type ThemeKey, type Preferences } from '@/lib/types'
 import { themes } from '@/lib/themes'
 
@@ -51,6 +50,13 @@ export const TextSizeSlider = ({
             />
           </div>
 
+          {/* Step indicators */}
+          <div className="absolute w-full h-1 top-1/2 -translate-y-1/2 flex justify-between">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="w-0.5 h-4 bg-gray-400 dark:bg-gray-600"></div>
+            ))}
+          </div>
+
           {/* Custom range input */}
           <input
             type="range"
@@ -60,10 +66,7 @@ export const TextSizeSlider = ({
             value={textSize}
             onChange={(e) => setTextSize(parseInt(e.target.value))}
             className={`
-              w-full h-6 appearance-none bg-transparent cursor-pointer
-              focus:outline-none focus:ring-2 focus:ring-offset-2
-              focus:ring-offset-white dark:focus:ring-offset-slate-900
-              focus:ring-blue-500 rounded-lg
+              w-full h-6 appearance-none bg-transparent cursor-pointer rounded-lg
             `}
             style={{
               // Remove default styling

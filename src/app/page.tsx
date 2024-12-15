@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client"
 
 import React, { useState, useEffect } from 'react'
@@ -36,7 +35,12 @@ export default function Page() {
   }, [])
 
   const isDarkMode = appearance === 'dark' || (appearance === 'auto' && systemTheme === 'dark')
-  const sizeScale = 0.875 + (textSize * 0.125)
+
+  // Update global font size based on textSize state
+  useEffect(() => {
+    const newSize = 16 + textSize * 2 // Adjust the multiplier as needed
+    document.documentElement.style.setProperty('--global-font-size', `${newSize}px`)
+  }, [textSize])
 
   // Reset preferences handler
   const handleReset = () => {
@@ -76,7 +80,7 @@ export default function Page() {
         } ${
           isDarkMode ? 'border-slate-700' : 'border-slate-200'
         } transition-all duration-700`}>
-          <div className="space-y-8 p-8" style={{ fontSize: `${sizeScale}rem` }}>
+          <div className="space-y-8 p-8" style={{ fontSize: 'var(--global-font-size)' }}>
             <Header isDarkMode={isDarkMode} activeTheme={activeTheme} />
             
             <div className="space-y-6">
