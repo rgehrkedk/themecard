@@ -1,3 +1,15 @@
+// src/components/text-size-slider.tsx
+import { type ThemeKey, type Preferences } from '@/lib/types'
+import { themes } from '@/lib/themes'
+
+export interface TextSizeSliderProps {
+  textSize: number
+  setTextSize: (size: number) => void
+  isDarkMode: boolean
+  activeTheme: ThemeKey
+  preferences: Preferences
+}
+
 export const TextSizeSlider = ({ 
   textSize, 
   setTextSize, 
@@ -26,8 +38,8 @@ export const TextSizeSlider = ({
         </span>
 
         <div className="flex-1 relative h-6">
-          {/* Background track */}
-          <div className="absolute w-full h-1 top-1/2 -translate-y-1/2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+          {/* Background track and progress bar container */}
+          <div className="absolute w-full h-1 top-1/2 -translate-y-1/2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden z-0">
             {/* Colored progress bar */}
             <div 
               className={`absolute h-full left-0 rounded-full transition-all duration-300 ${
@@ -48,7 +60,10 @@ export const TextSizeSlider = ({
             value={textSize}
             onChange={(e) => setTextSize(parseFloat(e.target.value))}
             className={`
+              relative z-10
               w-full h-6 appearance-none bg-transparent cursor-pointer
+              [&::-webkit-slider-thumb]:relative
+              [&::-webkit-slider-thumb]:z-20
               [&::-webkit-slider-thumb]:appearance-none
               [&::-webkit-slider-thumb]:w-4
               [&::-webkit-slider-thumb]:h-4
@@ -60,6 +75,8 @@ export const TextSizeSlider = ({
               [&::-webkit-slider-thumb]:transition-all
               [&::-webkit-slider-thumb]:duration-150
               [&::-webkit-slider-thumb]:hover:scale-110
+              [&::-moz-range-thumb]:relative
+              [&::-moz-range-thumb]:z-20
               [&::-moz-range-thumb]:w-4
               [&::-moz-range-thumb]:h-4
               [&::-moz-range-thumb]:rounded-full
@@ -70,6 +87,8 @@ export const TextSizeSlider = ({
               [&::-moz-range-thumb]:transition-all
               [&::-moz-range-thumb]:duration-150
               [&::-moz-range-thumb]:hover:scale-110
+              [&::-webkit-slider-runnable-track]:bg-transparent
+              [&::-moz-range-track]:bg-transparent
               focus:outline-none
             `}
             style={{
