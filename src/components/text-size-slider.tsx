@@ -30,7 +30,7 @@ export const TextSizeSlider = ({
       
       <div className="px-2 py-4 flex items-center space-x-4">
         {/* Small 'A' on the left */}
-        <span className={`text-sm font-medium transition-colors duration-700 ${
+        <span className={`text-xs font-medium transition-colors duration-700 ${
           isDarkMode ? 'text-gray-400' : 'text-gray-600'
         }`}>
           A
@@ -50,13 +50,6 @@ export const TextSizeSlider = ({
             />
           </div>
 
-          {/* Step indicators */}
-          <div className="absolute w-full h-1 top-1/2 -translate-y-1/2 flex justify-between">
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="w-0.5 h-4 bg-gray-400 dark:bg-gray-600"></div>
-            ))}
-          </div>
-
           {/* Custom range input */}
           <input
             type="range"
@@ -67,18 +60,27 @@ export const TextSizeSlider = ({
             onChange={(e) => setTextSize(parseInt(e.target.value))}
             className={`
               w-full h-6 appearance-none bg-transparent cursor-pointer rounded-lg
+              [&::-webkit-slider-thumb]:appearance-none
+              [&::-webkit-slider-thumb]:w-4
+              [&::-webkit-slider-thumb]:h-4
+              [&::-webkit-slider-thumb]:rounded-full
+              [&::-webkit-slider-thumb]:bg-white
+              [&::-webkit-slider-thumb]:shadow-md
+              [&::-moz-range-thumb]:w-4
+              [&::-moz-range-thumb]:h-4
+              [&::-moz-range-thumb]:rounded-full
+              [&::-moz-range-thumb]:bg-white
+              [&::-moz-range-thumb]:border-none
             `}
             style={{
-              // Remove default styling
               WebkitAppearance: 'none',
-              // Add custom thumb styling
               WebkitTapHighlightColor: 'transparent',
             }}
           />
         </div>
 
         {/* Large 'A' on the right */}
-        <span className={`text-xl font-medium transition-colors duration-700 ${
+        <span className={`text-2xl font-medium transition-colors duration-700 ${
           isDarkMode ? 'text-gray-400' : 'text-gray-600'
         }`}>
           A
