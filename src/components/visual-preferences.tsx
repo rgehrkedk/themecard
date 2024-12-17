@@ -1,7 +1,7 @@
-// components/visual-preferences.tsx
-import { Switch } from '@/components/ui/switch'
+// src/components/visual-preferences.tsx
 import { type ThemeKey, type Preferences } from '@/lib/types'
 import { themes } from '@/lib/themes'
+import { Switch } from '@/components/ui/switch'
 
 interface VisualPreferencesProps {
   preferences: Preferences
@@ -70,16 +70,29 @@ export const VisualPreferences = ({
                   border-2
                   ${value
                     ? isDarkMode ? 'border-white/10' : 'border-transparent'
-                    : isDarkMode ? `border-${themes[activeTheme].accentDark}` : `border-${themes[activeTheme].accent}`
+                    : isDarkMode 
+                      ? 'border-slate-400'  // More visible in dark mode
+                      : 'border-slate-300'  // More accessible in light mode
                   }
                   relative inline-flex h-6 w-11 shrink-0 cursor-pointer 
                   rounded-full transition-colors duration-200 
                   ease-in-out focus-visible:outline-none focus-visible:ring-2 
                   focus-visible:ring-offset-2 focus-visible:ring-offset-white 
+                  dark:focus-visible:ring-offset-slate-900
+                  focus-visible:ring-blue-500
                   disabled:cursor-not-allowed disabled:opacity-50
                   ${preferences.increaseContrast ? 'contrast-125' : ''}
                 `}
-              />
+              >
+                <span
+                  className={`
+                    pointer-events-none inline-block h-5 w-5 transform 
+                    rounded-full bg-white shadow-lg ring-0 transition 
+                    duration-200 ease-in-out translate-x-0
+                    ${value ? 'translate-x-5' : 'translate-x-0'}
+                  `}
+                />
+              </Switch>
               {preferences.toggleLabels && value && (
                 <span className="absolute inset-0 flex items-center justify-center text-xs font-medium text-white pointer-events-none">
                   ON
