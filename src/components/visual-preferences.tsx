@@ -81,18 +81,10 @@ export const VisualPreferences = ({
                   dark:focus-visible:ring-offset-slate-900
                   focus-visible:ring-blue-500
                   disabled:cursor-not-allowed disabled:opacity-50
+                  data-[state=checked]:bg-current
                   ${preferences.increaseContrast ? 'contrast-125' : ''}
                 `}
-              >
-                <span
-                  className={`
-                    pointer-events-none inline-block h-5 w-5 transform 
-                    rounded-full bg-white shadow-lg ring-0 transition 
-                    duration-200 ease-in-out translate-x-0
-                    ${value ? 'translate-x-5' : 'translate-x-0'}
-                  `}
-                />
-              </Switch>
+              />
               {preferences.toggleLabels && value && (
                 <span className="absolute inset-0 flex items-center justify-center text-xs font-medium text-white pointer-events-none">
                   ON
