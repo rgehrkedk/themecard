@@ -11,7 +11,9 @@ export const themes: Themes = {
     accentDark: 'text-blue-300',
     border: 'border-blue-500',
     headingLight: 'text-blue-950',
-    headingDark: 'text-blue-50'
+    headingDark: 'text-blue-50',
+    switchBorderLight: 'border-blue-300', // More accessible light mode border
+    switchBorderDark: 'border-blue-300'   // Keep the same for dark mode
   },
   purple: {
     primary: 'from-purple-500 to-pink-500',
@@ -22,7 +24,9 @@ export const themes: Themes = {
     accentDark: 'text-purple-300',
     border: 'border-purple-500',
     headingLight: 'text-purple-950',
-    headingDark: 'text-purple-50'
+    headingDark: 'text-purple-50',
+    switchBorderLight: 'border-purple-300',
+    switchBorderDark: 'border-purple-300'
   },
   teal: {
     primary: 'from-teal-400 via-emerald-400 to-green-400',
@@ -33,7 +37,9 @@ export const themes: Themes = {
     accentDark: 'text-teal-300',
     border: 'border-teal-400',
     headingLight: 'text-teal-950',
-    headingDark: 'text-teal-50'
+    headingDark: 'text-teal-50',
+    switchBorderLight: 'border-teal-300',
+    switchBorderDark: 'border-teal-300'
   },
   amber: {
     primary: 'from-amber-500 to-orange-500',
@@ -44,6 +50,8 @@ export const themes: Themes = {
     accentDark: 'text-amber-300',
     border: 'border-amber-500',
     headingLight: 'text-amber-950',
-    headingDark: 'text-amber-50'
+    headingDark: 'text-amber-50',
+    switchBorderLight: 'border-amber-300',
+    switchBorderDark: 'border-amber-300'
   }
 }
