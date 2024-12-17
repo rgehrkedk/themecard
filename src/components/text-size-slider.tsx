@@ -1,14 +1,3 @@
-import { type ThemeKey, type Preferences } from '@/lib/types'
-import { themes } from '@/lib/themes'
-
-interface TextSizeSliderProps {
-  textSize: number
-  setTextSize: (size: number) => void
-  isDarkMode: boolean
-  activeTheme: ThemeKey
-  preferences: Preferences
-}
-
 export const TextSizeSlider = ({ 
   textSize, 
   setTextSize, 
