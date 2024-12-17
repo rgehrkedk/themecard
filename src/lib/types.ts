@@ -1,13 +1,15 @@
 export type ThemeColors = {
-    primary: string
-    hover: string
-    solid: string
-    solidHover: string
-    accent: string
-    accentDark: string
-    border: string
-    headingLight: string
-    headingDark: string
+  primary: string
+  hover: string
+  solid: string
+  solidHover: string
+  accent: string
+  accentDark: string
+  border: string
+  headingLight: string
+  headingDark: string
+  switchBorderLight: string
+  switchBorderDark: string
   }
   
   export type Themes = {
@@ -26,3 +28,4 @@ export type ThemeColors = {
     increaseContrast: boolean
     toggleLabels: boolean
   }
+// lib/types.ts
