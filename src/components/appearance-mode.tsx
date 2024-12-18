@@ -1,6 +1,7 @@
 // components/appearance-mode.tsx
 import { type ThemeKey, type Preferences } from '@/lib/types'
 import { themes } from '@/lib/themes'
+import { Sun, Moon } from 'lucide-react'
 
 interface AppearanceModeProps {
   appearance: 'auto' | 'light' | 'dark'
@@ -17,7 +18,18 @@ export const AppearanceMode = ({
   activeTheme,
   preferences
 }: AppearanceModeProps) => {
-  const modes: ('light' | 'auto' | 'dark')[] = ['light', 'auto', 'dark']
+  const modes: ('auto' | 'light' | 'dark')[] = ['auto', 'light', 'dark']
+
+  const getIcon = (mode: 'auto' | 'light' | 'dark') => {
+    switch (mode) {
+      case 'light':
+        return <Sun className="h-4 w-4" />
+      case 'dark':
+        return <Moon className="h-4 w-4" />
+      default:
+        return 'Auto'
+    }
+  }
 
   return (
     <div className={`space-y-4 p-5 rounded-xl transition-all duration-700 ${
@@ -42,8 +54,8 @@ export const AppearanceMode = ({
                 ? `bg-gradient-to-r ${themes[activeTheme].primary}` 
                 : themes[activeTheme].solid
             } ${
-              appearance === 'light' ? 'translate-x-0' :
-              appearance === 'auto' ? 'translate-x-full' :
+              appearance === 'auto' ? 'translate-x-0' :
+              appearance === 'light' ? 'translate-x-full' :
               'translate-x-[200%]'
             }`}
           />
@@ -73,7 +85,7 @@ export const AppearanceMode = ({
                 }
               `}
             >
-              {mode.charAt(0).toUpperCase() + mode.slice(1)}
+              {getIcon(mode)}
             </button>
           ))}
         </div>
