@@ -7,6 +7,7 @@ import { ThemeSelector } from "./theme-selector"
 import { VisualPreferences } from "./visual-preferences"
 import { type ThemeKey, type Preferences } from '@/lib/types'
 import { themes } from '@/lib/themes'
+import { useEffect } from "react"
 
 interface DisplaySettingsProps {
   isOpen: boolean
@@ -37,15 +38,42 @@ export function DisplaySettings({
   setActiveTheme,
   onReset
 }: DisplaySettingsProps) {
+  // Handle ESC key press
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose()
+      }
+    }
+    if (isOpen) {
+      window.addEventListener('keydown', handleEsc)
+    }
+    return () => {
+      window.removeEventListener('keydown', handleEsc)
+    }
+  }, [isOpen, onClose])
+
   if (!isOpen) return null
 
+  // Handle click outside
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose()
+    }
+  }
+
   return (
-    <div className="fixed inset-0 z-50 bg-black/50">
-      <div className={`fixed right-0 top-0 z-50 h-full w-full max-w-md p-6 ${
-        isDarkMode 
-          ? !preferences.reduceTransparency ? 'bg-slate-900/95' : 'bg-slate-900'
-          : !preferences.reduceTransparency ? 'bg-white/95' : 'bg-white'
-      } backdrop-blur-sm transition-all duration-700`}>
+    <div 
+      className="fixed inset-0 z-50 bg-black/50" 
+      onClick={handleBackdropClick}
+    >
+      <div 
+        className={`fixed right-0 top-0 z-50 h-full w-full max-w-md p-6 ${
+          isDarkMode 
+            ? !preferences.reduceTransparency ? 'bg-slate-900/95' : 'bg-slate-900'
+            : !preferences.reduceTransparency ? 'bg-white/95' : 'bg-white'
+        } backdrop-blur-sm transition-all duration-700`}
+      >
         <div className="flex items-center justify-between pb-4">
           <h2 className={`text-lg font-semibold transition-colors duration-700 ${
             isDarkMode ? themes[activeTheme].headingDark : themes[activeTheme].headingLight
