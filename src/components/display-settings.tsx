@@ -64,27 +64,34 @@ export function DisplaySettings({
 
   return (
     <>
-      {/* Backdrop */}
+      {/* Backdrop with improved transition */}
       <div 
-        className="fixed inset-0 z-40 bg-black/50 transition-opacity duration-300"
+        className={`fixed inset-0 z-40 transition-all duration-500 ${
+          isOpen 
+            ? 'bg-black/50 backdrop-blur-sm' 
+            : 'bg-black/0 backdrop-blur-none pointer-events-none'
+        }`}
         onClick={handleBackdropClick}
       />
       
-      {/* Settings Panel Container */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+      {/* Settings Panel Container with improved mobile spacing */}
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-8 pointer-events-none">
         {/* Settings Panel */}
         <div 
           className={`relative w-full max-w-md overflow-y-auto pointer-events-auto
-            transform transition-all duration-300 ease-in-out
+            transform transition-all duration-500 ease-out
             rounded-2xl shadow-xl
-            max-h-[calc(100vh-2rem)]
-            ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}
+            max-h-[calc(100vh-4rem)]
+            ${isOpen 
+              ? 'scale-100 translate-y-0 opacity-100' 
+              : 'scale-95 translate-y-8 opacity-0'
+            }
             ${isDarkMode 
               ? !preferences.reduceTransparency ? 'bg-slate-900/95' : 'bg-slate-900'
               : !preferences.reduceTransparency ? 'bg-white/95' : 'bg-white'
             } backdrop-blur-sm`}
         >
-          <div className="h-full p-6">
+          <div className="h-full overflow-y-auto px-6 py-6">
             <div className="flex items-center justify-between pb-4">
               <h2 className={`text-lg font-semibold transition-colors duration-700 ${
                 isDarkMode ? themes[activeTheme].headingDark : themes[activeTheme].headingLight
