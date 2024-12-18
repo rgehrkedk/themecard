@@ -1,9 +1,10 @@
 // src/components/site-header.tsx
 import { Button } from "@/components/ui/button"
-import { Settings } from "lucide-react"
+import { Palette } from "lucide-react"
 import { useState } from "react"
 import { DisplaySettings } from "./display-settings"
 import { type ThemeKey, type Preferences } from '@/lib/types'
+import { themes } from '@/lib/themes'
 
 interface SiteHeaderProps {
   appearance: 'auto' | 'light' | 'dark'
@@ -35,10 +36,10 @@ export function SiteHeader({
   return (
     <>
       <header className={`sticky top-0 z-40 w-full border-b transition-colors duration-700 ${
-  isDarkMode 
-    ? 'bg-slate-900 border-slate-700' 
-    : 'bg-white border-slate-200'
-}`}>
+        isDarkMode 
+          ? 'bg-slate-900 border-slate-700' 
+          : 'bg-white border-slate-200'
+      }`}>
         <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
           <div className="flex gap-6 md:gap-10">
             <div className="flex items-center space-x-2">
@@ -51,13 +52,16 @@ export function SiteHeader({
           </div>
           <div className="flex flex-1 items-center justify-end space-x-4">
             <Button
-              variant="ghost"
-              size="icon"
+              variant="default"
               onClick={() => setIsOpen(true)}
-              className="relative"
+              className={`relative px-4 py-2 transition-all duration-300 ${
+                preferences.gradients
+                  ? `bg-gradient-to-r shadow-lg ${themes[activeTheme].primary} ${themes[activeTheme].hover}`
+                  : `${themes[activeTheme].solid} ${themes[activeTheme].solidHover}`
+              } text-white`}
             >
-              <Settings className="h-5 w-5" />
-              <span className="sr-only">Open display settings</span>
+              <Palette className="h-5 w-5 mr-2" />
+              <span>Theme</span>
             </Button>
           </div>
         </div>
