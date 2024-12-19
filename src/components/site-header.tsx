@@ -35,11 +35,11 @@ export function SiteHeader({
 
   return (
     <>
-      <header className={`sticky top-0 z-40 w-full border-b transition-colors duration-700 ${
+      <header className={`fixed top-4 left-4 right-4 z-40 w-[calc(100%-2rem)] border transition-colors duration-700 ${ 
         isDarkMode 
-          ? 'bg-slate-900 border-slate-700' 
-          : 'bg-white border-slate-200'
-      }`}>
+          ? 'bg-slate-900/70 border-slate-700' 
+          : 'bg-white/70 border-slate-200'
+      } rounded-xl shadow-lg backdrop-blur-md`}>
         <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
           <div className="flex gap-6 md:gap-10">
             <div className="flex items-center space-x-2">
