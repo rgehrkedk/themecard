@@ -52,7 +52,7 @@ export function SiteHeader({
           </div>
           <div className="flex flex-1 items-center justify-end space-x-4">
             <Button
-              variant="default"
+              variant="solid" // Corrected variant value
               onClick={() => setIsOpen(true)}
               className={`relative px-4 py-2 transition-all duration-300 ${
                 preferences.gradients
