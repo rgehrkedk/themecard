@@ -1,6 +1,6 @@
 // src/components/site-header.tsx
 import { Button } from "@/components/ui/button"
-import { Palette } from "lucide-react"
+import { Eye } from "lucide-react"  // Changed from Palette to Eye
 import { useState } from "react"
 import { DisplaySettings } from "./display-settings"
 import { type ThemeKey, type Preferences } from '@/lib/types'
@@ -52,7 +52,7 @@ export function SiteHeader({
           </div>
           <div className="flex flex-1 items-center justify-end space-x-4">
             <Button
-              variant="solid" // Corrected variant value
+              variant="solid"
               onClick={() => setIsOpen(true)}
               className={`relative px-4 py-2 transition-all duration-300 ${
                 preferences.gradients
@@ -60,8 +60,8 @@ export function SiteHeader({
                   : `${themes[activeTheme].solid} ${themes[activeTheme].solidHover}`
               } text-white`}
             >
-              <Palette className="h-5 w-5 mr-2" />
-              <span>Theme</span>
+              <Eye className="h-5 w-5" />
+              <span className="sr-only">Open display settings</span>
             </Button>
           </div>
         </div>
