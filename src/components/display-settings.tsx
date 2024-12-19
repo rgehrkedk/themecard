@@ -80,16 +80,16 @@ export function DisplaySettings({
         <div 
           className={`relative w-full max-w-md overflow-y-auto pointer-events-auto
             transform transition-all duration-500 ease-out
-            rounded-2xl shadow-xl
+            rounded-xl shadow-lg
             max-h-[calc(100vh-8rem)]
             ${isOpen 
               ? 'scale-100 translate-y-0 opacity-100' 
               : 'scale-95 translate-y-8 opacity-0'
             }
             ${isDarkMode 
-              ? !preferences.reduceTransparency ? 'bg-slate-900/95' : 'bg-slate-900'
-              : !preferences.reduceTransparency ? 'bg-white/95' : 'bg-white'
-            } backdrop-blur-sm`}
+              ? !preferences.reduceTransparency ? 'bg-slate-900/70' : 'bg-slate-900'
+              : !preferences.reduceTransparency ? 'bg-white/70' : 'bg-white'
+            } backdrop-blur-md`}
         >
           <div className="h-full overflow-y-auto px-6 py-6">
             <div className="flex items-center justify-between pb-4">
