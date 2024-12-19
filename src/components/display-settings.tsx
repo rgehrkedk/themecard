@@ -81,7 +81,7 @@ export function DisplaySettings({
           className={`relative w-full max-w-md overflow-y-auto pointer-events-auto
             transform transition-all duration-500 ease-out
             rounded-2xl shadow-xl
-            max-h-[calc(100vh-4rem)]
+            max-h-[calc(100vh-8rem)]
             ${isOpen 
               ? 'scale-100 translate-y-0 opacity-100' 
               : 'scale-95 translate-y-8 opacity-0'
