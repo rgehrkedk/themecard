@@ -75,7 +75,7 @@ export function DisplaySettings({
       />
       
       {/* Settings Panel Container with improved mobile spacing */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-8 pointer-events-none">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 pointer-events-none">
         {/* Settings Panel */}
         <div 
           className={`relative w-full max-w-md overflow-y-auto pointer-events-auto
