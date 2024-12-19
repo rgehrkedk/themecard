@@ -91,8 +91,9 @@ export function DisplaySettings({
               : !preferences.reduceTransparency ? 'bg-white/70' : 'bg-white'
             } backdrop-blur-md`}
         >
-          <div className="h-full overflow-y-auto px-6 py-6">
-            <div className="flex items-center justify-between pb-4">
+          <div className="flex flex-col h-full">
+            {/* Fixed Header with Close Button */}
+            <div className="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700 sticky top-0 bg-opacity-70 backdrop-blur-md rounded-t-xl">
               <h2 className={`text-lg font-semibold transition-colors duration-700 ${
                 isDarkMode ? themes[activeTheme].headingDark : themes[activeTheme].headingLight
               }`}>
@@ -109,7 +110,8 @@ export function DisplaySettings({
               </Button>
             </div>
 
-            <div className="space-y-6">
+            {/* Scrollable Content */}
+            <div className="overflow-y-auto px-6 py-6 space-y-6 flex-1">
               <AppearanceMode 
                 appearance={appearance}
                 setAppearance={setAppearance}
