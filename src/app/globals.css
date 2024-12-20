@@ -33,12 +33,6 @@
     --ring: 222.2 84% 4.9%;
  
     --radius: 0.5rem;
-
-    --global-font-size: 16px; /* default */
-  }
-  
-  body {
-    font-size: var(--global-font-size);
   }
  
   .dark {
@@ -79,4 +73,32 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer utilities {
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
+  
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
 }
