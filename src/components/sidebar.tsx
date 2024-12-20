@@ -1,11 +1,8 @@
 // components/Sidebar.tsx
 "use client"
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { MenuIcon, X } from "lucide-react"
 import { useState, useEffect } from "react"
+import { MenuIcon, X } from "lucide-react"
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -15,7 +12,7 @@ export function Sidebar({ className }: SidebarProps) {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 1024) // lg breakpoint
+      setIsMobile(window.innerWidth < 1024)
       setIsOpen(window.innerWidth >= 1024)
     }
 
@@ -28,28 +25,25 @@ export function Sidebar({ className }: SidebarProps) {
     <>
       {/* Mobile Menu Button */}
       {isMobile && (
-        <Button
-          variant="ghost"
-          size="icon"
-          className="lg:hidden fixed top-4 left-4 z-50"
+        <button
+          className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md hover:bg-accent"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X /> : <MenuIcon />}
-        </Button>
+          {isOpen ? <X className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+        </button>
       )}
 
       {/* Sidebar */}
       <div
-        className={cn(
-          "fixed top-0 left-0 z-40 h-screen w-64 transition-transform duration-300",
-          "backdrop-blur-md bg-background/80 border-r",
-          "supports-[backdrop-filter]:bg-background/60",
-          isOpen ? "translate-x-0" : "-translate-x-full",
-          "lg:translate-x-0", // Always show on larger screens
-          className
-        )}
+        className={`
+          fixed top-0 left-0 z-40 h-screen w-64 transition-transform duration-300
+          backdrop-blur-md bg-background/80 border-r
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+          lg:translate-x-0
+        `}
       >
-        <ScrollArea className="h-full w-full px-4 py-8">
+        {/* Scrollable content container */}
+        <div className="h-full w-full overflow-y-auto px-4 py-8">
           {/* Logo or Brand */}
           <div className="flex items-center mb-8 px-2">
             <h2 className="text-2xl font-bold">Your Brand</h2>
@@ -57,7 +51,7 @@ export function Sidebar({ className }: SidebarProps) {
 
           {/* Navigation Links */}
           <nav className="space-y-2">
-            <NavItem href="#" active>Dashboard</NavItem>
+            <NavItem href="#" isActive>Dashboard</NavItem>
             <NavItem href="#">Projects</NavItem>
             <NavItem href="#">Tasks</NavItem>
             <NavItem href="#">Calendar</NavItem>
@@ -74,7 +68,7 @@ export function Sidebar({ className }: SidebarProps) {
               </div>
             </div>
           </div>
-        </ScrollArea>
+        </div>
       </div>
 
       {/* Overlay for mobile */}
@@ -89,15 +83,23 @@ export function Sidebar({ className }: SidebarProps) {
 }
 
 // Navigation Item Component
-function NavItem({ href, children, active }: { href: string; children: React.ReactNode; active?: boolean }) {
+function NavItem({ 
+  href, 
+  children, 
+  isActive 
+}: { 
+  href: string
+  children: React.ReactNode
+  isActive?: boolean 
+}) {
   return (
     <a
       href={href}
-      className={cn(
-        "flex items-center space-x-2 px-4 py-3 rounded-lg text-sm font-medium transition-colors",
-        "hover:bg-accent hover:text-accent-foreground",
-        active && "bg-secondary/50 text-secondary-foreground"
-      )}
+      className={`
+        flex items-center space-x-2 px-4 py-3 rounded-lg text-sm font-medium
+        transition-colors hover:bg-accent
+        ${isActive ? 'bg-secondary/50 text-secondary-foreground' : ''}
+      `}
     >
       {children}
     </a>
